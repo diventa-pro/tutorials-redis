@@ -1,0 +1,45 @@
+# Sharding
+version: '3'
+
+services:
+
+  redis1:
+    image: redis:6.0.10-alpine
+    restart: always
+    
+  redis2:
+    image: redis:6.0.10-alpine
+    restart: always
+
+  redis3:
+    image: redis:6.0.10-alpine
+    restart: always
+    
+  twemproxy:
+    image: malexer/twemproxy
+    restart: always
+    depends_on:
+        - redis1
+        - redis2
+        - redis3
+    environment:        
+        - REDIS_SERVERS=redis1:6379:1,redis2:6379:1,redis3:6379:1
+        - LISTEN_PORT=6379
+    
+
+  gui-redis-commander:
+    image: rediscommander/redis-commander:latest
+    environment:
+      - REDIS_HOSTS=local:twemproxy:6379
+    ports:
+      - "8081:8081"
+    depends_on:
+      - twemproxy
+
+  gui-rebrow:
+    image: marian/rebrow
+    ports:
+        - "8082:5001"
+    depends_on:
+        - twemproxy        
+      
