@@ -15,95 +15,11 @@ Far scadere le chiavi
 	1) (nil)
 	
 
-hashset
+	
 
-	HSET movie "title" "The Godfather"
-	HMSET movie "year" 1972 "rating" 9.2 "watchers" 10000000
-	HINCRBY movie "watchers" 3
-	HGET movie "title"
-	HMGET movie "title" "watchers"
-	HGETALL movie
-	HDEL movie "watchers"
-	HGETALL movie
-	
-#Sets
-A Set in Redis is an unordered collection of distinct Strings	
-	
-	SADD gianni:preferiti cotoletta carbonara "risotto alla milanese" "pizza margherita"
-	SADD gianni:preferiti "pizza margherita" polpette
-	
-	SADD anna:preferiti tofu ribollita coratella polpette
-	
-Membri di un insieme	
-	
-	SMEMBERS anna:preferiti
-	
-Intersezione tra gli elementi di un insieme	
-	
-	sinter gianni:preferiti anna:preferiti
-	
- The command SDIFF expects one or many Sets. 
- It returns an array with all members of the first Set that do not exist in the Sets that follow it. 
- In this command, the key name order matters. 
- Any key that does not exist is considered to be an empty Set.	
-	
-	sdiff gianni:preferiti anna:preferiti
-	
-	sunion gianni:preferiti anna:preferiti
-	
-	SRANDMEMBER gianni:preferiti
-	
-	> SISMEMBER gianni:preferiti polpette
-	(integer) 1
-	
-	> SISMEMBER gianni:preferiti lasagne
-	(integer) 0
-	
-	SCARD gianni:preferiti
-	
-## Sorted Sets
-A Sorted Set is very similar to a Set, but each element of a Sorted Set has an associated score. 
-In other words, a Sorted Set is a collection of nonrepeating Strings sorted by score. 
-It is possible to have elements with repeated scores. 
-In this case, the repeated elements are ordered lexicographically (in alphabetical order).	
 
-	> ZADD leaders 100 "Alice"
-	(integer) 1
-	> ZADD leaders 100 "Zed"
-	(integer) 1
-	> ZADD leaders 102 "Hugo"
-	(integer) 1
-	> ZADD leaders 101 "Max"
-	(integer) 1
 	
-Comandi
 
-Altri comandi
-	
-	ZRANGEBYLEX, ZRANGEBYSCORE, , ZREVRANGEBYLEX, and ZREVRANGEBYSCORE. But only ZRANGE and ZREVRANGE	
-	
-Comandi	
-	
-	ZRANGE, ZREVRANGE
-	
-	ZRANGE leaders 0 -1
-	ZREVRANGE leaders 0 -1
-	ZRANGE leaders 0 -1 WITHSCORES
-	ZREVRANGE leaders 0 -1 WITHSCORES
-	
-	ZREM leaders "Hugo"
-	
-This returns the score of a member.	
-	
-	ZSCORE
-
-This returns the member rank (or index) ordered from low to high. The member with the lowest score has rank 0.
-
-	ZRANK: 
-	
-This returns the member rank (or index) ordered from high to low. The member with the highest score has rank 0.	
-
-	ZREVRANK
 
 Bitmaps
 -------

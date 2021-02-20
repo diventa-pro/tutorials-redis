@@ -1,5 +1,5 @@
 Redis: Chiave-Valore Stringa 
--------------
+=============================
 
 Impostare e recuperare chiavi stringa.
 Lo schema è:
@@ -24,19 +24,25 @@ Se la chiave non esiste.
     > get nonesiste
     (nil)
 
-Esercizio: 
-* cosa succede se imposto una chiave una seconda volta con un valore diverso?
-	
-Cancella la chiave e il corrispondente valore
+Cosa accede se si imposta una stessa 
+chiave una seconda volta con un valore diverso?
+Redis cancella la chiave e il corrispondente valore.
 
 	# cancella
     > del suite
 	> del nonesiste
-	
-	
+
 	# multiset
 	> mset 003 Rocco 
 	> mset 004 Melissa
 	
 	# multiget
 	> MGET 001 002 003 004 005
+
+Esercizio
+---------
+Usare redis per memorizzare contatti telefonici.
+
+    set "cotatto:bruno bianchi" +393330011122
+    set "cotatto:viola verdi" +393332233344
+    set "cotatto:roberta rossi" +393338877766
