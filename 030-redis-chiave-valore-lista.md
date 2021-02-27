@@ -28,3 +28,9 @@ Redis: Chiave-Valore Lista
 	rpop serie
     # Rimuove dalla coda 
     lpop series
+
+Esempio
+-------
+Centralino VoIP. Elenco degli orari delle chiamate da un numero.
+
+    rpush inbound:+393401111111 "2021-02-12 23:44:11" "2021-02-13 12:00:00"  

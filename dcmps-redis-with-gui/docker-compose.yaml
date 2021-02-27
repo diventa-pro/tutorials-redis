@@ -6,6 +6,17 @@ services:
     image: redis:6.0.10-alpine
     container_name: redis
     restart: always
+    ports:
+      - "6379:6379"
+
+  redis-cli:
+    image: redis:6.0.10-alpine
+    container_name: redis-cli
+    stdin_open: true
+    tty: true
+    entrypoint: ["redis-cli", "-h", "redis"]
+    depends_on:
+      - redis
 
   gui-redis-commander:
     container_name: redis-commander
@@ -23,5 +34,5 @@ services:
     ports:
         - "8082:5001"
     depends_on:
-        - redis        
-      
+        - redis
+

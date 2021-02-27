@@ -41,8 +41,17 @@ Redis cancella la chiave e il corrispondente valore.
 
 Esercizio
 ---------
-Usare redis per memorizzare contatti telefonici.
+Utilizzare Redis come back-end per un sistema di chiamate VoIP.
+Serve associare ad ogni numero inbound un nominaitvo e poterlo recuperare.
 
-    set "cotatto:bruno bianchi" +393330011122
-    set "cotatto:viola verdi" +393332233344
-    set "cotatto:roberta rossi" +393338877766
+    set "+393401111111" "Bruno Bianchi"
+    set "+393402222222" "Viola Verdi"
+    set "+393403333333" "Roberta Rossi"
+
+Arriva una chiamata da +393402222222, qual'è il chiamante?
+
+    get "+393402222222"
+
+Arriva una chiamata da +393405555555, qual'è il chiamante?
+
+    get "+393405555555"

@@ -1,20 +1,25 @@
 #1 
 chiave -> valore (stringa)
-caso d'uso: arriva un numero, mostrare il chiamante / numero se sconosciuto
+caso d'uso: 
+chiamate ingresso, arriva un numero, mostrare il chiamante / numero se sconosciuto
+chiamate ingresso, numero di chiamate ricevute
 es:
-telefono:<tel1> => gianni Rossi
-telefono:<tel2> => gianni Rossi
-telefono:<tel3> => Maria Verdi
+contatto:<tel1> => gianni Rossi
+contatto:<tel2> => gianni Rossi
+contatto:<tel3> => Maria Verdi
+inbound:<tel1>:count => 0
+inbound:<tel3>:count => 0
 
 
 #2
 caso d'uso: lista delle chiamate ricevute
 es:
-chiamate => [+390123, +3901234]
+inbound:log => [+390123, +3901234]
+outbound:log => [+390123, +3901234]
 nuova telefonata in arrivo / in uscita
 
 #3
-caso d'uso: lista delle chiamate incoming outgoing x numero di telefono
+caso d'uso: lista delle chiamate inbound e outbound x numero di telefono
 
 telefono:<tel1> => [chiamata:1, chiamata:3]
 telefono:<tel2> => [chiamata:4, chiamata:5]
@@ -33,8 +38,8 @@ chiamata:2 => {
 #4
 caso d'uso chiamate bloccate
 
-blocked:incoming:  set{'+390000', '+144'}
-blocked:outgoing:  set{''}'
+inbound:blocker  set{'+390000', '+144'}
+outbound:blocked:  set{''}'
 chiamata:1 => {
 timestamp:
 isIncoming:
@@ -44,3 +49,9 @@ caller:
 blocked:
 }
 
+#5
+caso d'uso, numeri più comuni
+
+inbound => zset {
+    <+39020202> 13
+}
