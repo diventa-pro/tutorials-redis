@@ -54,5 +54,4 @@ Redis come back-end per un sistema di gestione prezzi supermercato.
 Scrivere esempi per associare il codice prodotto al prezzo e alla quantità
 disponibile.
 
-![Numero Prodotto - Prezzo](https://lh3.googleusercontent.com/proxy/3BffXrpcvh1LT3wjfzZPR5TasldGt6mTaYIx-i8UkmyXFoJWfq4aH11_mJK9eauob-kPh0JrgUxNBnzDEbUSog)
 

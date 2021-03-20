@@ -41,4 +41,3 @@ Redis come back-end per un sistema di gestione prezzi supermercato.
 Scrivere esempi per associare al numero seriale di un dispositivo
 di self check out la lista dei numeri seriali dei prodotti acquistati.
 
-![Device self check out](https://www.tuttoesselunga.com/wp-content/uploads/2015/02/Presto-Spesa-Esselunga.jpg)

@@ -21,7 +21,14 @@ Operazioni su insieme:
     > sdiff gianni:preferiti anna:preferiti
     > sunion gianni:preferiti anna:preferiti
 	
-	
+Restituisce un membro a caso di un set.	
+
     > srandmember gianni:preferiti
+
+Constrolla che un membro sia contenuto nel set.
+
     > sismember gianni:preferiti lasagne
+
+Conta gli elementi in un set
+
     > scard gianni:preferiti

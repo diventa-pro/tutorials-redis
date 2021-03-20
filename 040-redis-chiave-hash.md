@@ -1,14 +1,28 @@
 Redis: Chiave-Hash
 =============================
 
+Associa un valore di tipo hash con una proprietà ad una chiave:
+
 	hset movie "title" "the godfather"
+
+Associa / modifica un valore di tipo hash ad una chiave aggiungendo più proprietà:
+
 	hmset movie "year" 1972 "rating" 9.2 "watchers" 10000000
+
+Incrementa una proprietà di tipo numerico:
+
 	hincrby movie "watchers" 3
+
+Restituisce una proprietà / multiple proprietà di un valore hash:
+
 	hget movie "title"
 	hmget movie "title" "watchers"
 	hgetall movie
-	hdel movie "watchers"
 	hgetall movie
+
+Cancella una proprietà hash:
+
+	hdel movie "watchers"
 
 Esercizio
 -------
@@ -40,4 +54,3 @@ Redis come back-end per un sistema di gestione prezzi supermercato.
 Scrivere esempi per associare al numero seriale di una tessera socio / punti
 i dati dell'intestatario della tessera.
 
-![tessera socio](https://www.guide-online.it/wp-content/uploads/2020/01/registrazione-tessera-socio-coop-2.png)
