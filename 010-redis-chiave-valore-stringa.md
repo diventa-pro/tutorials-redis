@@ -10,7 +10,9 @@ Esempio, numero camera d'albergo, nominativo ospite.
 	
     # imposta chiave / valore
     > set suite Presidente
-    # Se il valore contiene degli spazi è necessario marcare l'inizio e la fine.
+	
+    # Se il valore contiene degli spazi 
+	# è necessario marcare l'inizio e la fine.
     > set camera10 "Gianni Gialli"
 	> set camera11 "Rosa Rossi"
     > set camera21 "Vittorio Verdi" 
@@ -38,8 +40,12 @@ Redis cancella la chiave e il corrispondente valore.
 	
 	# multiget
 	> MGET 001 002 003 004 005
+	
+Ricercare tra le chiavi esistenti
 
-Esercizio
+	> keys <pattern>
+
+Esercizio 
 ---------
 Utilizzare Redis come back-end per un sistema di chiamate VoIP.
 Serve associare ad ogni numero inbound un nominaitvo e poterlo recuperare.
@@ -55,3 +61,9 @@ Arriva una chiamata da +393402222222, qual'è il chiamante?
 Arriva una chiamata da +393405555555, qual'è il chiamante?
 
     get "+393405555555"
+
+Esercizio 
+---------
+Redis come back-end per un sistema di gestione prezzi supermercato.
+Scrivere esempi per associare il codice prodotto alla descrizione.
+

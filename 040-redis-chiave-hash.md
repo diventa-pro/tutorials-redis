@@ -10,7 +10,7 @@ Redis: Chiave-Hash
 	hdel movie "watchers"
 	hgetall movie
 
-Esempio
+Esercizio
 -------
 Centralino VoIP. Registrazione di tutte le interazioni con 
 vari numeri, sia inbound che outbound.
@@ -33,3 +33,11 @@ Telefonata outbound a +393401111111 senza risposta
     hmset call:<x> type outbound lost true timestamp "2021-01-31 16:22:00"
 
     rpush interactions:<+393401111111> call:<x>
+
+Esercizio 
+---------
+Redis come back-end per un sistema di gestione prezzi supermercato.
+Scrivere esempi per associare al numero seriale di una tessera socio / punti
+i dati dell'intestatario della tessera.
+
+![tessera socio](https://www.guide-online.it/wp-content/uploads/2020/01/registrazione-tessera-socio-coop-2.png)

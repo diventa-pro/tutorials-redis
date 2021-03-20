@@ -34,3 +34,11 @@ Esempio
 Centralino VoIP. Elenco degli orari delle chiamate da un numero.
 
     rpush inbound:+393401111111 "2021-02-12 23:44:11" "2021-02-13 12:00:00"  
+
+Esercizio 
+---------
+Redis come back-end per un sistema di gestione prezzi supermercato.
+Scrivere esempi per associare al numero seriale di un dispositivo
+di self check out la lista dei numeri seriali dei prodotti acquistati.
+
+![Device self check out](https://www.tuttoesselunga.com/wp-content/uploads/2015/02/Presto-Spesa-Esselunga.jpg)
