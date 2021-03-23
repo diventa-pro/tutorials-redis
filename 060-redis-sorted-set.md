@@ -24,3 +24,11 @@ Un Sorted Set in Redis è un'insieme di stringhe ordinate in base ad uno score e
     > zrevrangebyscore
     > zrange 
     > zrevrange
+
+Esempio
+-------
+Estrazione automatizzata lotteria.
+Le persone comprano i biglietti della lotteria.
+Ogni bilgietto ha un acquirente, un acquirente può comprare più biglietti.
+Estrarre 3 biglietti a cui corrispondono 3, 2, 1 premio.
+Si deve anche sapere a chi consegnare il premio! perchè è una lotteria autmatizzata.
