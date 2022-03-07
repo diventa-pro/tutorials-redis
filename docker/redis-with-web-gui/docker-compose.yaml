@@ -2,6 +2,7 @@ version: '3'
 
 services:
 
+  # Redis istanza singola, disponibile a localhost:6379
   redis:
     image: redis:6.0.10-alpine
     container_name: redis
@@ -9,6 +10,14 @@ services:
     ports:
       - "6379:6379"
 
+  # Redis-cli. 
+  # Attach con:
+  #
+  #   docker compose exec redis-cli /bin/ash
+  #
+  # Connessione a redis con:
+  #
+  #   redis-cli -h redis
   redis-cli:
     image: redis:6.0.10-alpine
     container_name: redis-cli
@@ -18,6 +27,9 @@ services:
     depends_on:
       - redis
 
+  # GUI amministrazione Redis, disponibile su
+  #
+  #   http://localhost:8081
   gui-redis-commander:
     container_name: redis-commander
     image: rediscommander/redis-commander:latest
@@ -28,6 +40,11 @@ services:
     depends_on:
       - redis
 
+  # GUI amministrazione Redis, disponibile su
+  #
+  #   http://localhost:8082
+  #
+  # Alla login specificare come host 'redis'
   gui-rebrow:
     container_name: rebrow
     image: marian/rebrow
