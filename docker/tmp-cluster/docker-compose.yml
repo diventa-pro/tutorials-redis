@@ -1,45 +1,107 @@
+# Redis Cluster provides a way to run a Redis installation where data is automatically sharded across multiple Redis nodes.
+#
+# What do you get with Redis Cluster?
+# - The ability to automatically split your dataset among multiple nodes.
+# - The ability to continue operations when a subset of the nodes are experiencing failures or are unable to communicate with the rest of the cluster.
+#
+# References
+# ----------
+# https://redis.io/topics/cluster-tutorial
 # Explore contente of redis: docker run --rm -ti redis /bin/sh
 # ../redis-server ./redis.conf
 # /usr/local/bin
 # docker-entrypoint.sh  gosu  redis-benchmark  redis-check-aof  redis-check-rdb  redis-cli  redis-sentinel  redis-server
 # Cluster
-version: '3'
+# 
+# Set Up
+# ------
+#
+#   $ docker compose up -d
+#   $ docker exec master1 /bin/ash
+#   $ cd /script
+#   $ /bin/ash enable-cluster.sh
+version: '3.8'
 
 services:
 
-    redis1:
+    master1:
         image: redis:6.0.10-alpine
         restart: always
         entrypoint: ["redis-server", "/conf/redis.conf"]
+        # Every Redis Cluster node requires two TCP connections open. 
+        # The normal Redis TCP port used to serve clients, for example 6379, 
+        # plus the second port named cluster bus port. 
+        # The cluster bus port will be derived by adding 10000 to the data port, 
+        # 16379 in this example, or by overriding it with the cluster-port config.
         volumes:
-            - ./conf/redis1.conf:/conf/redis.conf
-        network_mode: host
-#        ports:
-#          - 6379:6379
-#          - 16379:16379
-      
-    redis2:
-        image: redis:6.0.10-alpine
-        restart: always
-        entrypoint: ["redis-server", "/conf/redis.conf"]
-        volumes:
-            - ./conf/redis2.conf:/conf/redis.conf
-        network_mode: host
-#        ports:
-#          - 6380:6380
-#          - 16380:16380
+            - ./conf/redis.conf:/conf/redis.conf
+            - ./script:/script
+        networks:
+          clusternetwork:
+            ipv4_address: 172.28.0.4
 
-    redis3:
+      
+    master2:
         image: redis:6.0.10-alpine
         restart: always
         entrypoint: ["redis-server", "/conf/redis.conf"]
         volumes:
-            - ./conf/redis3.conf:/conf/redis.conf
-        network_mode: host       
-#        ports:
-#          - 6380:6380
-#          - 16380:16380
+            - ./conf/redis.conf:/conf/redis.conf
+            - ./script:/script
+        networks:
+          clusternetwork:
+            ipv4_address: 172.28.0.2            
+
+
+    master3:
+        image: redis:6.0.10-alpine
+        restart: always
+        entrypoint: ["redis-server", "/conf/redis.conf"]
+        volumes:
+            - ./conf/redis.conf:/conf/redis.conf
+            - ./script:/script
+        networks:
+          clusternetwork:
+            ipv4_address: 172.28.0.3            
             
+    replica1:
+        depends_on: 
+            - master1
+        image: redis:6.0.10-alpine
+        restart: always
+        entrypoint: ["redis-server", "/conf/redis.conf"]
+        volumes:
+            - ./conf/redis.conf:/conf/redis.conf            
+            - ./script:/script
+        networks:
+          clusternetwork:
+            ipv4_address: 172.28.1.4
+            
+    replica2:
+        depends_on: 
+            - master2
+        image: redis:6.0.10-alpine
+        restart: always
+        entrypoint: ["redis-server", "/conf/redis.conf"]
+        volumes:
+            - ./conf/redis.conf:/conf/redis.conf
+            - ./script:/script
+        networks:
+          clusternetwork:
+            ipv4_address: 172.28.1.2
+
+    replica3:
+        depends_on: 
+            - master3
+        image: redis:6.0.10-alpine
+        restart: always
+        entrypoint: ["redis-server", "/conf/redis.conf"]
+        volumes:
+            - ./conf/redis.conf:/conf/redis.conf
+            - ./script:/script
+        networks:
+          clusternetwork:
+            ipv4_address: 172.28.1.3
 
 
 #    config:
@@ -60,5 +122,10 @@ services:
 #            - ./script:/script
             
 
-    
+networks:
+    clusternetwork:
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 172.28.0.0/16
   

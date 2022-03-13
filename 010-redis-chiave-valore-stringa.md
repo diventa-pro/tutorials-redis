@@ -2,7 +2,7 @@ Redis: Chiave-Valore Stringa
 =============================
 
 Impostare e recuperare chiavi stringa.
-Lo schema è:
+Lo schema del comando è:
 
     set <chiave> <valore>
 
@@ -47,8 +47,8 @@ Ricercare tra le chiavi esistenti
 
 Esercizio 
 ---------
-Utilizzare Redis come back-end per un sistema di chiamate VoIP.
-Serve associare ad ogni numero inbound un nominaitvo e poterlo recuperare.
+Utilizzare Redis come rubrica delle chiamate in entrata.
+Serve associare ad ogni numero in ingresso un nominaitvo e poterlo recuperare.
 
     set "+393401111111" "Bruno Bianchi"
     set "+393402222222" "Viola Verdi"
@@ -64,6 +64,8 @@ Arriva una chiamata da +393405555555, qual'è il chiamante?
 
 Esercizio 
 ---------
-Redis come back-end per un sistema di gestione prezzi supermercato.
+Redis come db chiave-valore per un sistema di gestione prezzi supermercato.
 Scrivere esempi per associare il codice prodotto alla descrizione.
+Ad esempio 8076809501231 è il codice prodotto (tecnicamente chiamato SKU) di "MULINO BIANCO CAMILLE GR.304".
+
 

@@ -1,11 +1,11 @@
 Redis: Chiave-Valore Lista
 =============================
 
-	rpush series htgawm mandalorian "american gods"
+	rpush series discovery mandalorian "casa di carta"
 	llen serie
 	
 	> lindex series 0
-	"htgawm"
+	"discovery"
 	
 	lpush series "the expanse"
 	> lindex serie 0
@@ -37,7 +37,9 @@ Centralino VoIP. Elenco degli orari delle chiamate da un numero.
 
 Esercizio 
 ---------
-Redis come back-end per un sistema di gestione prezzi supermercato.
-Scrivere esempi per associare al numero seriale di un dispositivo
-di self check out la lista dei numeri seriali dei prodotti acquistati.
+Pensare a come usare Redis per supportare un sistema di gestione prezzi supermercato.
+
+Scrivere esempi che associano al numero seriale di un dispositivo
+di lettura codici prodotto (tecnicamente chiamato dispositivo di self check-out) 
+la lista dei numeri seriali dei prodotti in fase di acquisto.
 

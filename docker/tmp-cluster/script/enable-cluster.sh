@@ -1,3 +1,2 @@
 #!/bin/sh
-sleep 10
-redis-cli --cluster create redis1:7000 redis2:7000 redis3:7000 --cluster-replicas 0 --no-auth-warning --verbose
+redis-cli --cluster create 172.28.0.4:6379 172.28.0.2:6379 172.28.0.3:6379 172.28.1.4:6379 172.28.1.2:6379 172.28.1.3:6379 --cluster-replicas 1 --verbose
