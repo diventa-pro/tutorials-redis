@@ -16,10 +16,18 @@
 # Set Up
 # ------
 #
+#   # start up the nodes that will be part of the cluster
 #   $ docker compose up -d
-#   $ docker exec master1 /bin/ash
+#
+#   # configure the cluster
+#   $ docker compose exec master1 /bin/ash
 #   $ cd /script
 #   $ /bin/ash enable-cluster.sh
+#
+#   # connect to a node in the cluster
+#   $ docker run -ti --network tmp-cluster_clusternetwork --rm redis redis-cli -h replica1
+#
+#   run experiments as writing k1,v1, check the MOVE error, remove a node, check the key is still present.
 version: '3.8'
 
 services:
