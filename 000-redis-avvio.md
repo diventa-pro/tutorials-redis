@@ -30,9 +30,11 @@ Spiegazione:
 * `redis redis-cli`: come nel caso precedente `redis` è il nome dell'immagine, `redis-cli` è il nome del programma client di redis, anch'esso contenuto nell'immagine Docker `redis`.
 * `-h <server redis>`: questo è un parametro di `redis-cli`! Non di Docker!. Fornisce a `redis-cli` il nome dell'host Redis al quale connettersi. E proprio per questo deve essere valorizzato con il valore di `--name` utilizzato per il server.
 
+```shell
+	$ docker run -it --network redisnet --rm redis redis-cli -h redissrv
+    	redissrv:6379>
+```
 
-	docker run -it --network redisnet --rm redis redis-cli -h redissrv
-    redissrv:6379>
 	
 Il server risponde?
 
